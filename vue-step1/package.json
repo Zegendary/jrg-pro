@@ -10,6 +10,7 @@
   "author": "zxw",
   "license": "ISC",
   "devDependencies": {
+    "vue": "^2.1.8",
     "webpack": "^1.14.0"
   },
   "dependencies": {
