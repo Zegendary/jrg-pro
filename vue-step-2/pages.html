@@ -1,0 +1,52 @@
+<html>
+   <head>
+       <meta charset=utf-8>
+       <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+       <style>
+           #app{
+               padding-top: 100px;
+               width: 600px;
+               margin: 0 auto;
+           }
+           [v-cloak]{
+               display: none;
+           }
+           .list-item{
+                height: 40px;
+               line-height: 40px;
+           }
+           .btn.pull-right{
+               margin-top: 10px;
+           }
+           .content{
+               width: 170px;
+           }
+           .list-item>span{
+               display: inline-block;
+               vertical-align: bottom;
+               overflow: hidden;
+               white-space: nowrap;
+               text-overflow: ellipsis;
+           }
+       </style>
+   </head>
+   <body>
+      <div id="app">
+        <div class="new-tesk">
+            <input type="text" class="form-control" v-model="newTodo" @keyup.enter="addTodo()" placeholder="请输入待办事物">
+        </div>
+        <ol class="todos">
+            <li v-for="item in todoList" v-cloak class="list-item ">
+                <input type="checkbox" v-model="item.finished">
+                <span class="content">{{ item.content }}</span>
+                <span v-if="item.finished" class="done" style="width: 60px;">已完成</span>
+                <span v-else class="done"  style="width: 60px;">未完成</span>
+                <span style="width: 100px;">创建时间</span>
+                <span>{{ item.createTime }}</span>
+                <button @click="removeTodo(item)" type="button" class="btn btn-primary btn-xs pull-right">X</button>
+            </li>
+        </ol>
+      <div>  
+      <script src="bundle.js"></script>
+    </body>
+</html>
