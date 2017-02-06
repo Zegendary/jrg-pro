@@ -1,0 +1,91 @@
+<html>
+   <head>
+       <meta charset=utf-8>
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+       <style>
+           #app{
+               padding-top: 100px;
+               width: 600px;
+               margin: 0 auto;
+           }
+           [v-cloak]{
+               display: none;
+           }
+           .list-item{
+                height: 40px;
+               line-height: 40px;
+           }
+           .btn.pull-right{
+               margin-top: 10px;
+           }
+           .content{
+               width: 170px;
+           }
+           .list-item>span{
+               display: inline-block;
+               vertical-align: bottom;
+               overflow: hidden;
+               white-space: nowrap;
+               text-overflow: ellipsis;
+           }
+       </style>
+   </head>
+   <body>
+      <div id="app">
+          <section id="signInAndSignUp" v-if="!currentUser">
+              <div>
+                  <label><input type="radio" name="type" v-model="actionType" value="signUp">注册</label>
+                  <label><input type="radio" name="type" v-model="actionType" value="login">登入</label>
+              </div>
+              <div class="sign-up" v-if="actionType=='signUp'">
+                  <form @submit.prevent="signUp">
+                      <div class="form-row">
+                          <span>账户</span>
+                          <input type="text" v-model="formData.username">
+                      </div>
+                      <div class="form-row">
+                          <span>密码</span>
+                          <input type="password" v-model="formData.password">
+                      </div>
+                      <div class="form-action">
+                          <input type="submit" value="注册">
+                      </div>
+                  </form>
+              </div>
+              <div class="login" v-if="actionType=='login'">
+                  <form @submit.prevent="login">
+                      <div class="form-row">
+                          <span>账户</span>
+                          <input type="text" v-model="formData.username">
+                      </div>
+                      <div class="form-row">
+                          <span>密码</span>
+                          <input type="password" v-model="formData.password">
+                      </div>
+                      <div class="form-action">
+                          <input type="submit" value="登陆">
+                      </div>
+                  </form>
+              </div>
+          </section>
+          <section id="todo" v-if="currentUser">
+              <p><span>用户名：{{currentUser.username}} </span><button @click="logout"> 登出</button></p>
+              <div class="new-tesk">
+                  <input type="text" class="form-control" v-model="newTodo" @keyup.enter="addTodo()" placeholder="请输入待办事物">
+              </div>
+              <ol class="todos">
+                  <li v-for="item in todoList" v-cloak class="list-item ">
+                      <input type="checkbox" v-model="item.finished">
+                      <span class="content">{{ item.content }}</span>
+                      <span v-if="item.finished" class="done" style="width: 60px;">已完成</span>
+                      <span v-else class="done"  style="width: 60px;">未完成</span>
+                      <span style="width: 100px;">创建时间</span>
+                      <span>{{ item.createTime }}</span>
+                      <button @click="removeTodo(item)" type="button" class="btn btn-primary btn-xs pull-right">X</button>
+                  </li>
+              </ol>
+          </section>
+      </div>
+      <script src="bundle.js"></script>
+    </body>
+</html>
