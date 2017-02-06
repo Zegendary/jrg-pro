@@ -50,11 +50,7 @@
 
 	var _vue2 = _interopRequireDefault(_vue);
 
-	var _storage = __webpack_require__(3);
-
-	var _storage2 = _interopRequireDefault(_storage);
-
-	var _leancloudStorage = __webpack_require__(4);
+	var _leancloudStorage = __webpack_require__(3);
 
 	var _leancloudStorage2 = _interopRequireDefault(_leancloudStorage);
 
@@ -88,12 +84,10 @@
 	        finished: false
 	      });
 	      this.newTodo = '';
-	      this.saveOrUpdateTodos();
 	    },
 	    removeTodo: function removeTodo(item) {
 	      var index = this.todoList.indexOf(item);
 	      this.todoList.splice(index, 1);
-	      this.saveOrUpdateTodos();
 	    },
 	    signUp: function signUp() {
 	      var _this = this;
@@ -207,6 +201,15 @@
 	        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
 	      }return fmt;
 	    };
+	  },
+
+	  watch: {
+	    todoList: {
+	      handler: function handler() {
+	        this.saveOrUpdateTodos();
+	      },
+	      deep: true
+	    }
 	  }
 	});
 
@@ -8920,28 +8923,6 @@
 
 /***/ },
 /* 3 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	/**
-	 * Created by zhangxinwang on 16/01/2017.
-	 */
-	exports.default = {
-	  fetch: function fetch(STORAGE_KEY) {
-	    return JSON.parse(window.localStorage.getItem(STORAGE_KEY || []));
-	  },
-	  save: function save(STORAGE_KEY, items) {
-	    items = JSON.stringify(items);
-	    window.localStorage.setItem(STORAGE_KEY, items);
-	  }
-	};
-
-/***/ },
-/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process, Buffer) {(function webpackUniversalModuleDefinition(root, factory) {
@@ -22920,10 +22901,10 @@
 	/******/ ]);
 	});
 	//# sourceMappingURL=av.js.map
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(5).Buffer))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(4).Buffer))
 
 /***/ },
-/* 5 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -22936,9 +22917,9 @@
 
 	'use strict'
 
-	var base64 = __webpack_require__(6)
-	var ieee754 = __webpack_require__(7)
-	var isArray = __webpack_require__(8)
+	var base64 = __webpack_require__(5)
+	var ieee754 = __webpack_require__(6)
+	var isArray = __webpack_require__(7)
 
 	exports.Buffer = Buffer
 	exports.SlowBuffer = SlowBuffer
@@ -24719,7 +24700,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 6 */
+/* 5 */
 /***/ function(module, exports) {
 
 	'use strict'
@@ -24839,7 +24820,7 @@
 
 
 /***/ },
-/* 7 */
+/* 6 */
 /***/ function(module, exports) {
 
 	exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -24929,7 +24910,7 @@
 
 
 /***/ },
-/* 8 */
+/* 7 */
 /***/ function(module, exports) {
 
 	var toString = {}.toString;
