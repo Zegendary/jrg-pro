@@ -1,23 +1,53 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+    <header>
+      <topBar></topBar>
+    </header>
+    <main>
+      <resumeEditor></resumeEditor>
+      <resumePreview></resumePreview>
+    </main>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'app'
-}
+<script type="text/ecmascript-6">
+  import './assets/reset.css'
+  import 'normalize.css/normalize.css'
+
+  import topBar from 'components/topBar/topBar'
+  import resumeEditor from 'components/resumeEditor/resumeEditor'
+  import resumePreview from 'components/resumePreview/resumePreview'
+
+  export default {
+    name: 'app',
+    components: {
+      topBar,
+      resumeEditor,
+      resumePreview
+    }
+  }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="stylus" rel="stylesheet/stylus">
+  #app
+    height 100vh
+    display flex
+    flex-direction column
+    background #EAEBEC
+    main
+      flex-grow 1
+      display flex
+      justify-content space-between
+      padding 0 16px
+      min-width 1024px
+      max-width 1440px
+      width 100%
+      margin 16px auto
+      #resumeEditor
+        width 35%
+        background #fff
+      #resumePreview
+        flex-grow 1
+        margin-left 16px
+        background #fff
 </style>
