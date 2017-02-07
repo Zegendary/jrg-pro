@@ -31,6 +31,9 @@
   background: #fff;
 }*{margin:0; padding:0; box-sizing: border-box; }
 *::after, *::before{box-sizing:border-box;}
+body,html{
+  font-family: "PingFang SC",'STHeitiSC-Light','Helvetica-Light',Arial,sans-serif;
+}
 /*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
 
 /**
@@ -536,4 +539,4 @@ a[data-v-56a411ba] {
   color: #42b983;
 }
 
-/*# sourceMappingURL=app.96f4af5ebecb1daf03a2aab21e028af2.css.map*/
+/*# sourceMappingURL=app.6572e67598eb3e552015f58f76309bd5.css.map*/
