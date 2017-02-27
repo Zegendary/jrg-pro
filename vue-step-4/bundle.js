@@ -96,6 +96,7 @@
 	      user.setUsername(this.formData.username);
 	      user.setPassword(this.formData.password);
 	      user.signUp().then(function (loginedUser) {
+	        console.log(_this);
 	        _this.currentUser = _this.getCurrentUser();
 	      }, function (error) {
 	        alert("注册失败");
@@ -144,6 +145,7 @@
 	      avTodos.set('content', dataString);
 	      avTodos.save().then(function (todo) {
 	        _this3.todoList.id = todo.id;
+	        console.log(_this3.todoList);
 	        console.log('保存成功');
 	      }, function (error) {
 	        // 异常处理

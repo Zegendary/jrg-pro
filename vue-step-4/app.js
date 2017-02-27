@@ -40,6 +40,7 @@ var app = new Vue({
       user.setUsername(this.formData.username);
       user.setPassword(this.formData.password);
       user.signUp().then((loginedUser) => {
+        console.log(this)
         this.currentUser = this.getCurrentUser()
       }, function (error) {
         alert("注册失败")
@@ -81,6 +82,7 @@ var app = new Vue({
       avTodos.set('content', dataString);
       avTodos.save().then((todo) => {
         this.todoList.id = todo.id
+        console.log(this.todoList);
         console.log('保存成功');
       }, function (error) {
         // 异常处理
