@@ -21,7 +21,7 @@
   margin: 16px auto;
 }
 #app main #resumeEditor {
-  width: 35%;
+  min-width: 35%;
   background: #fff;
 }
 #app main #resumePreview {
@@ -503,10 +503,10 @@ template {
   display: none;
 }
 
-#topBar[data-v-76ce9620] {
+#topBar[data-v-148c5248] {
   background: #fff;
 }
-#topBar .wrapper[data-v-76ce9620] {
+#topBar .wrapper[data-v-148c5248] {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: justify;
@@ -519,11 +519,11 @@ template {
   margin: 0 auto;
   height: 64px;
 }
-#topBar .wrapper .logo[data-v-76ce9620] {
+#topBar .wrapper .logo[data-v-148c5248] {
   font-size: 24px;
   color: #000;
 }
-#topBar .wrapper .button-wrapper button[data-v-76ce9620] {
+#topBar .wrapper .button-wrapper button[data-v-148c5248] {
   width: 72px;
   height: 32px;
   line-height: 32px;
@@ -532,19 +532,19 @@ template {
   border: none;
   cursor: pointer;
 }
-#topBar .wrapper .button-wrapper button[data-v-76ce9620]:focus {
+#topBar .wrapper .button-wrapper button[data-v-148c5248]:focus {
   outline: none;
 }
-#topBar .wrapper .button-wrapper .save[data-v-76ce9620] {
+#topBar .wrapper .button-wrapper .save[data-v-148c5248] {
   margin-right: 16px;
   background: #02af5f;
   color: #fff;
 }
-#topBar .wrapper .button-wrapper .preview[data-v-76ce9620] {
+#topBar .wrapper .button-wrapper .preview[data-v-148c5248] {
   background: #ddd;
   color: #222;
 }
-#resumeEditor[data-v-d1b50d40] {
+#resumeEditor[data-v-02bb8cf0] {
   background: #fff;
   box-shadow: 0 1px 3px 0 rgba(0,0,0,0.25);
   display: -ms-flexbox;
@@ -553,12 +553,12 @@ template {
       flex-direction: row;
   overflow: auto;
 }
-#resumeEditor nav[data-v-d1b50d40] {
+#resumeEditor nav[data-v-02bb8cf0] {
   width: 80px;
   background: #000;
   color: #fff;
 }
-#resumeEditor nav ol>li[data-v-d1b50d40] {
+#resumeEditor nav ol>li[data-v-02bb8cf0] {
   height: 48px;
   display: -ms-flexbox;
   display: flex;
@@ -569,21 +569,21 @@ template {
   margin-top: 16px;
   margin-bottom: 16px;
 }
-#resumeEditor nav ol>li.active[data-v-d1b50d40] {
+#resumeEditor nav ol>li.active[data-v-02bb8cf0] {
   background: #fff;
   color: #000;
 }
-#resumeEditor .panels[data-v-d1b50d40] {
+#resumeEditor .panels[data-v-02bb8cf0] {
   -ms-flex-positive: 1;
       flex-grow: 1;
 }
-#resumeEditor .panels>li[data-v-d1b50d40] {
+#resumeEditor .panels>li[data-v-02bb8cf0] {
   padding: 24px;
 }
-#resumeEditor .panels>li .resume-field label[data-v-d1b50d40] {
+#resumeEditor .panels>li .resume-field label[data-v-02bb8cf0] {
   display: block;
 }
-#resumeEditor .panels>li .resume-field input[type=text][data-v-d1b50d40] {
+#resumeEditor .panels>li .resume-field input[type=text][data-v-02bb8cf0] {
   margin: 16px 0;
   border: 1px solid #ddd;
   box-shadow: 0 1px 3px 0 rgba(0,0,0,0.25);
@@ -591,33 +591,79 @@ template {
   height: 40px;
   padding: 0 8px;
 }
-#resumeEditor .panels>li .resume-field input[type=text][data-v-d1b50d40]:focus {
+#resumeEditor .panels>li .resume-field input[type=text][data-v-02bb8cf0]:focus {
   outline: none;
 }
-#resumeEditor svg.icon[data-v-d1b50d40] {
+#resumeEditor svg.icon[data-v-02bb8cf0] {
   width: 24px;
   height: 24px;
 }
-ol[data-v-d1b50d40] {
+ol[data-v-02bb8cf0] {
   list-style: none;
 }
 #resumePreview {
   background: #fff;
   box-shadow: 0 1px 3px 0 rgba(0,0,0,0.25);
+  padding: 2em;
+  color: #333;
+  line-height: 1.2;
+  overflow: auto;
 }
-h1[data-v-56a411ba],
-h2[data-v-56a411ba] {
+#resumePreview * {
+  box-sizing: border-box;
+  font-variant: normal;
   font-weight: normal;
 }
-ul[data-v-56a411ba] {
+#resumePreview ol {
+  list-style: none;
+}
+#resumePreview section+section {
+  margin-top: 2em;
+}
+#resumePreview p {
+  white-space: pre-line;
+}
+#resumePreview h2:first-child {
+  background: #ddd;
+  display: inline-block;
+  padding: 0.2em;
+  margin-bottom: 0.5em;
+}
+section[data-name="profile"]>h1 {
+  margin: 0.1em 0;
+  font-size: 4em;
+}
+section[data-name="work"] li+li,
+section[data-name="projects"] li+li,
+section[data-name="awards"] li+li {
+  margin-top: 1em;
+}
+section[data-name="work"] li h3,
+section[data-name="projects"] li h3,
+section[data-name="awards"] li h3 {
+  border-bottom: 1px solid #999;
+  padding-bottom: 0.3em;
+  margin-bottom: 0.3em;
+}
+section[data-name="education"] li {
+  line-height: 1.5;
+}
+section[data-name="contacts"] td:first-child {
+  padding-right: 1em;
+}
+h1[data-v-3c5e5b4b],
+h2[data-v-3c5e5b4b] {
+  font-weight: normal;
+}
+ul[data-v-3c5e5b4b] {
   list-style-type: none;
   padding: 0;
 }
-li[data-v-56a411ba] {
+li[data-v-3c5e5b4b] {
   display: inline-block;
   margin: 0 10px;
 }
-a[data-v-56a411ba] {
+a[data-v-3c5e5b4b] {
   color: #42b983;
 }
-/*# sourceMappingURL=app.4da0322b596760bac13a4dda415e4437.css.map*/
+/*# sourceMappingURL=app.c38b142489bfd2425ec4ad0affe59513.css.map*/

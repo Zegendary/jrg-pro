@@ -21,18 +21,24 @@
         </div>
         <div v-else class="resume-field" v-for="(value,key) in resume[item.field]">
           <label> {{key}} </label>
-          <input type="text" v-model="resume[item.field][key]" @input="subitem[key] = $event.target.value">
+          <!--严格模式下-->
+          <!--<input type="text" :value="value" @input="change(resume,key,$event.target.value)">-->
+          <!--非严格模式下-->
+          <input type="text" :value="value" @input="resume[item.field][key] = $event.target.value">
         </div>
       </li>
     </ol>
   </div>
 </template>
 <script type="text/ecmascript-6">
-
   export default{
-    data () {
-      return {
-      }
+    methods: {
+      // change (obj, key, e) {  //严格模式中的探索
+      //   console.log(obj)
+      //   console.log(key)
+      //   console.log(e)
+      //   // this.$store.commit('modifyState', {key: e.target.value})
+      // }
     },
     computed: {
       resume () {
@@ -46,15 +52,6 @@
           return this.$store.commit('switchTabs', value)
         }
       }
-    },
-    methods: {
-      add () {
-        this.$store.commit('increment')
-        console.log(this.$store.state.count)
-      }
-    },
-    created () {
-      console.log(Object.keys(this.resume))
     }
   }
 </script>
