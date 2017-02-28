@@ -7,7 +7,7 @@ import Vue from 'vue'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  // strict: true,//严格模式
+  strict: true,  // 严格模式
   state: {
     selected: 'profile',
     resume: {
@@ -54,8 +54,15 @@ export default new Vuex.Store({
     switchTabs (state, payload) {
       state.selected = payload
     },
-    modifyState (state, paylaod) {
-      state.resume = paylaod
+    modifyState (state, payload) {
+      const num = payload.index
+      const key1 = payload['key1']
+      const key = payload['key']
+      if (!isNaN(num)) {
+        state.resume[key1][num][key] = payload.e
+      } else {
+        state.resume[key1][key] = payload.e
+      }
     }
   }
 })

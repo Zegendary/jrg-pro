@@ -12,19 +12,19 @@
     <ol class="panels">
       <li v-for="item in resume.config" v-show="item.field === selected">
         <div v-if="resume[item.field] instanceof Array">
-          <div v-for="subitem in resume[item.field]">
+          <div v-for="(subitem,index) in resume[item.field]">
             <div class="resume-field" v-for="(value,key) in subitem">
               <label> {{key}} </label>
-              <input type="text" :value="value" @input="subitem[key] = $event.target.value">
+              <input type="text" :value="value" @input="change(item.field,key,$event.target.value,index)">
             </div>
           </div>
         </div>
         <div v-else class="resume-field" v-for="(value,key) in resume[item.field]">
           <label> {{key}} </label>
           <!--严格模式下-->
-          <!--<input type="text" :value="value" @input="change(resume,key,$event.target.value)">-->
+          <input type="text" :value="value" @input="change(item.field,key,$event.target.value)">
           <!--非严格模式下-->
-          <input type="text" :value="value" @input="resume[item.field][key] = $event.target.value">
+          <!--<input type="text" :value="value" @input="resume[item.field][key] = $event.target.value">-->
         </div>
       </li>
     </ol>
@@ -33,12 +33,16 @@
 <script type="text/ecmascript-6">
   export default{
     methods: {
-      // change (obj, key, e) {  //严格模式中的探索
-      //   console.log(obj)
-      //   console.log(key)
-      //   console.log(e)
-      //   // this.$store.commit('modifyState', {key: e.target.value})
-      // }
+      change (key1, key, e, index) {  // 严格模式中的探索
+        // this.$store.dispatch('modifyState', obj)
+        this.$store.commit('modifyState', {
+          key1,
+          key,
+          e,
+          index
+        })
+        // return obj
+      }
     },
     computed: {
       resume () {
