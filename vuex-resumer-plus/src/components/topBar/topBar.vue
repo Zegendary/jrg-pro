@@ -2,14 +2,16 @@
   <div id="topBar">
     <div class="wrapper">
       <span class="logo">Resumer</span>
-      <div class="button-wrapper" v-show="true">
+      <div class="button-wrapper" v-show="">
         <button class="sign-up" @click.prevent="signUpDialogVisible = true">注册</button>
         <button class="login">登录</button>
       </div>
       <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
-        <signUpForm @success="login($event)"></signUpForm>
+        <signUpForm @success="signIn($event)"></signUpForm>
       </MyDialog>
-      <div class="button-wrapper" v-show="">
+      <div class="button-wrapper" v-show="true">
+        <span>你好，{{user.username}}</span>
+        <button class="loginout" @click.prevent="signOut">登出</button>
         <button class="save">保存</button>
         <button class="preview">预览</button>
       </div>
@@ -19,6 +21,7 @@
 <script type="text/ecmascript-6">
   import MyDialog from '../MyDialog/MyDialog'
   import signUpForm from '../signUpForm/signUpForm.vue'
+  import AV from '../../lib/leancloud'
 
   export default{
     name: 'topBar',
@@ -37,9 +40,13 @@
       }
     },
     methods: {
-      login (user) {
+      signIn (user) {
         this.signUpDialogVisible = false
         this.$store.commit('setUser', user)
+      },
+      signOut () {
+        AV.User.logOut()
+        this.$store.commit('removeUser')
       }
     }
   }
@@ -75,6 +82,10 @@
           background #02af5f
           color #fff
         .preview,.login
-          background #ddd
-          color #222
+          background blue
+          color #fff
+        .loginout
+          margin-right 16px
+          background red
+          color #fff
 </style>

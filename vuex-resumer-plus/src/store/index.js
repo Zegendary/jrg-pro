@@ -69,6 +69,9 @@ export default new Vuex.Store({
     },
     setUser (state, paylaod) {
       Object.assign(state.user, paylaod)
+    },
+    removeUser (state) {
+      state.user.id = null
     }
     // 使用传值得方法修改数据
     // modifyState (state, payload) {
