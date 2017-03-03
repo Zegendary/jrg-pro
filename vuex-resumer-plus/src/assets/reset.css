@@ -1,0 +1,5 @@
+*{margin:0; padding:0; box-sizing: border-box; }
+*::after, *::before{box-sizing:border-box;}
+body,html{
+  font-family: "PingFang SC",'STHeitiSC-Light','Helvetica-Light',Arial,sans-serif;
+}
