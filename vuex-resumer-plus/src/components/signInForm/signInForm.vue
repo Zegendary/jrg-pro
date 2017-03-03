@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form @submit.prevent="signUp">
+    <form @submit.prevent="signIn">
       <div class="row">
         <span>用户名</span>
         <input type="text" v-model="formData.username" required>
@@ -22,23 +22,20 @@
   import getAVUser from '../../lib/getAVUser'
 
   export default{
-    name: 'signUpForm',
+    name: 'signInForm',
     data () {
       return {
         formData: {
           username: '',
-          passname: ''
+          password: ''
         },
         errorMessage: ''
       }
     },
     methods: {
-      signUp () {
+      signIn () {
         let {username, password} = this.formData
-        let user = new AV.User()
-        user.setUsername(username)
-        user.setPassword(password)
-        user.signUp().then(() => {
+        AV.User.logIn(username, password).then(() => {
           this.$emit('success', getAVUser())
         }, (error) => {
           this.errorMessage = Error(error)

@@ -19,6 +19,7 @@
   import resumePreview from './components/resumePreview/resumePreview'
   import icons from './assets/icons'
   import store from './store/index'
+  import getAVUser from 'lib/getAVUser'
 
   export default {
     name: 'app',
@@ -34,6 +35,7 @@
       if (state) {
         state = JSON.parse(state)
         this.$store.commit('initState', state)
+        this.$store.commit('setUser', getAVUser())
       }
     }
   }
