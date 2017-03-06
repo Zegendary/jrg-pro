@@ -2,21 +2,19 @@
   <div id="topBar">
     <div class="wrapper">
       <span class="logo">Resumer</span>
-      <div class="button-wrapper" v-show="">
+      <div class="button-wrapper" v-show="!userID">
         <button class="sign-up" @click.prevent="signUpDialogVisible = true">注册</button>
-        <button class="login">登录</button>
+        <button class="login" @click.prevent="signInDialogVisible = true">登录</button>
       </div>
-      <div class="button-wrapper" v-show="true">
+      <div class="button-wrapper" v-show="userID">
         <span>你好，{{user.username}}</span>
         <button class="loginout" @click.prevent="signOut">登出</button>
-        <button class="save">保存</button>
-        <button class="preview">预览</button>
       </div>
     </div>
     <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
       <signUpForm @success="signIn($event)"/>
     </MyDialog>
-    <MyDialog title="登陆" :visible="signInDialogVisible" @close="signInDialogVisible = false">
+    <MyDialog title="登录" :visible="signInDialogVisible" @close="signInDialogVisible = false">
       <signInForm @success="signIn($event)"/>
     </MyDialog>
   </div>
@@ -24,7 +22,7 @@
 <script type="text/ecmascript-6">
   import MyDialog from '../MyDialog/MyDialog'
   import signUpForm from '../signUpForm/signUpForm.vue'
-  import signIpForm from '../signInForm/signInForm.vue'
+  import signInForm from '../signInForm/signInForm.vue'
   import AV from '../../lib/leancloud'
 
   export default{
@@ -38,11 +36,14 @@
     components: {
       MyDialog,
       signUpForm,
-      signIpForm
+      signInForm
     },
     computed: {
       user () {
         return this.$store.state.user
+      },
+      userID () {
+        return this.user.id
       }
     },
     methods: {
@@ -84,11 +85,11 @@
           cursor pointer
           &:focus
             outline none
-        .save,.sign-up
+        .sign-up
           margin-right 16px
           background #02af5f
           color #fff
-        .preview,.login
+        .login
           background blue
           color #fff
         .loginout

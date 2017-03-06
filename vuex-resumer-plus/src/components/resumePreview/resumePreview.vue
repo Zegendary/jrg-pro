@@ -1,50 +1,50 @@
 <template>
   <div id="resumePreview">
-    <section data-name="profile" v-show="resume.profile">
+    <section data-name="profile" v-if="resume.profile && resume.profile.name">
       <h1>{{resume.profile.name}}</h1>
-      <h2>{{resume.profile.title}}</h2>
+      <h2>{{resume.profile.city}}</h2>
       <p>
-        <small>{{resume.profile.city}}</small>
+        <small>{{resume.profile.title}}</small>
         <small>{{resume.profile.birthday}}</small>
       </p>
     </section>
-    <section data-name="work" v-show="resume.work">
+    <section data-name="work" v-if="resume.work && resume.work.length > 0">
       <h2>工作经历</h2>
       <ol>
         <li v-for="item in resume.work">
           <h3>{{item.company}}</h3>
-          <p v-show="item.content">{{item.content}}</p>
+          <p v-show="item.details">{{item.details}}</p>
         </li>
       </ol>
     </section>
-    <section data-name="education" v-show="resume.education">
+    <section data-name="education" v-if="resume.education && resume.education.length > 0">
       <h2>教育经历</h2>
       <ol>
         <li v-for="item in resume.education">
           <h3>{{item.school}}</h3>
-          <p v-show="item.content">{{item.content}}</p>
+          <p v-show="item.details">{{item.details}}</p>
         </li>
       </ol>
     </section>
-    <section data-name="projects" v-show="resume.projects">
+    <section data-name="projects" v-if="resume.projects && resume.projects.length > 0">
       <h2>项目经历</h2>
       <ol>
         <li v-for="item in resume.projects">
           <h3>{{item.name}}</h3>
-          <p v-show="item.content">{{item.content}}</p>
+          <p v-show="item.details">{{item.details}}</p>
         </li>
       </ol>
     </section>
-    <section data-name="awards" v-show="resume.awards">
+    <section data-name="awards" v-if="resume.awards && resume.awards.length > 0">
     <h2>获得荣誉</h2>
     <ol>
       <li v-for="item in resume.awards">
         <h3>{{item.name}}</h3>
-        <p v-show="item.content">{{item.content}}</p>
+        <p v-show="item.details">{{item.details}}</p>
       </li>
     </ol>
   </section>
-    <section data-name="contacts" v-show="resume.contacts">
+    <section data-name="contacts" v-if="resume.contacts && resume.contacts.length > 0">
     <h2>联系方式</h2>
     <ol>
       <li v-for="item in resume.contacts">
@@ -59,6 +59,7 @@
   export default{
     computed: {
       resume () {
+        console.log(this.$store.state.resume)
         return this.$store.state.resume
       }
     }
@@ -102,6 +103,10 @@
   section[data-name="education"]
     li
       line-height 1.5
+      h3
+        border-bottom 1px solid #999
+        padding-bottom .3em
+        margin-bottom .3em
   section[data-name="contacts"]
     td:first-child
       padding-right 1em

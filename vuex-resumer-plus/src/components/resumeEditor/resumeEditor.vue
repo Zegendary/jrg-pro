@@ -2,7 +2,7 @@
   <div id="resumeEditor">
     <nav>
       <ol>
-        <li v-for="(item,index) in resume.config" @click="selected = item.field" :class="{active: item.field === selected}">
+        <li v-for="(item,index) in resumeConfig" @click="selected = item.field" :class="{active: item.field === selected}">
           <svg class="icon">
             <use :xlink:href="`#icon-${item.icon}`"></use>
           </svg>
@@ -10,14 +10,16 @@
       </ol>
     </nav>
     <ol class="panels">
-      <li v-for="item in resume.config" v-show="item.field === selected">
-        <div v-if="resume[item.field] instanceof Array">
+      <li v-for="item in resumeConfig" v-show="item.field === selected">
+        <div v-if="item.type === 'array'">
+          <h2>{{item.field}}</h2>
           <div v-for="(subitem,i) in resume[item.field]">
             <div class="resume-field" v-for="(value,key) in subitem">
               <label> {{key}} </label>
               <input type="text" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)">
             </div>
           </div>
+          <button @click="addResumeSubfield(item.field)">新增</button>
         </div>
         <div v-else class="resume-field" v-for="(value,key) in resume[item.field]">
           <label> {{key}} </label>
@@ -50,11 +52,17 @@
           path,
           value
         })
+      },
+      addResumeSubfield (field) {
+        this.$store.commit('addResumeSubfield', {field})
       }
     },
     computed: {
       resume () {
         return this.$store.state.resume
+      },
+      resumeConfig () {
+        return this.$store.state.resumeConfig
       },
       selected: {
         get () {
