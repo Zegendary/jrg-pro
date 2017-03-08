@@ -35,7 +35,7 @@
       if (state) {
         state = JSON.parse(state)
       }
-      this.$store.commit('initState', {})
+      this.$store.commit('initState', state)
       this.$store.commit('setUser', getAVUser())
     }
   }
@@ -69,4 +69,25 @@
     fill currentColor
     vertical-align -0.1em
     font-size 16px
+  button
+    width 72px
+    height 32px
+    line-height 32px
+    font-size 18px
+    text-align center
+    border none
+    cursor pointer
+    &:focus
+      outline none
+    .sign-up
+      margin-right 16px
+      background #02af5f
+      color #fff
+    .login
+      background blue
+      color #fff
+    .loginout
+      margin-right 16px
+      background red
+      color #fff
 </style>

@@ -12,17 +12,18 @@
     <ol class="panels">
       <li v-for="item in resumeConfig" v-show="item.field === selected">
         <div v-if="item.type === 'array'">
-          <h2>{{item.field}}</h2>
+          <h2>{{$t(`resume.${item.field}._`)}}</h2>
           <div v-for="(subitem,i) in resume[item.field]">
+            <button class="remove" @click="removeResumeSubfield(item.field, i)">删除</button>
             <div class="resume-field" v-for="(value,key) in subitem">
-              <label> {{key}} </label>
+              <label> {{$t(`resume.${item.field}.${key}`)}} </label>
               <input type="text" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)">
             </div>
           </div>
           <button @click="addResumeSubfield(item.field)">新增</button>
         </div>
         <div v-else class="resume-field" v-for="(value,key) in resume[item.field]">
-          <label> {{key}} </label>
+          <label> {{$t(`resume.profile.${key}`)}} </label>
           <!--严格模式下传[路径]的方法-->
           <input type="text" :value="value" @input="changeResumeField(`${item.field}.${key}`, $event.target.value)">
           <!--严格模式下传[值]的方法-->
@@ -55,6 +56,9 @@
       },
       addResumeSubfield (field) {
         this.$store.commit('addResumeSubfield', {field})
+      },
+      removeResumeSubfield (field, index) {
+        this.$store.commit('removeResumeSubfield', {field, index})
       }
     },
     computed: {
