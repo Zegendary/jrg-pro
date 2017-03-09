@@ -1,22 +1,24 @@
 <template>
   <div id="topBar">
     <div class="wrapper">
-      <span class="logo">{{$t(`topbar.resume`)}}</span>
+      <div class="logo-wrapper">
+        <span class="logo">{{$t(`topbar.resume`)}}</span>
+      </div>
       <div class="button-wrapper" v-show="!userID">
-        <button class="change-lang" @click="changeLang">{{$t(`button`)}}</button>
-        <button class="sign-up" @click.prevent="signUpDialogVisible = true">{{$t(`topbar.signUp`)}}</button>
-        <button class="login" @click.prevent="signInDialogVisible = true">{{$t(`topbar.login`)}}</button>
+        <el-button :plain="true" size="small" type="info" @click.prevent="signUpDialogVisible = true">{{$t(`topbar.signUp`)}}</el-button>
+        <el-button type="info" size="small" @click.prevent="signInDialogVisible = true">{{$t(`topbar.login`)}}</el-button>
+        <el-switch v-model="lang" on-color="#13ce66" off-color="#58B7FF" on-text="En" off-text="中文"></el-switch>
       </div>
       <div class="button-wrapper" v-show="userID">
         <span>{{$t(`topbar.hello`)}}，{{user.username}}</span>
-        <button class="change-lang" @click="changeLang">{{$t(`button`)}}</button>
         <button class="loginout" @click.prevent="signOut">{{$t(`topbar.logout`)}}</button>
+        <el-switch v-model="lang" on-color="#13ce66" off-color="#58B7FF" on-text="En" off-text="中文"></el-switch>
       </div>
     </div>
-    <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
+    <MyDialog :title="$t(`topbar.signUp`)" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
       <signUpForm @success="signIn($event)"/>
     </MyDialog>
-    <MyDialog title="登录" :visible="signInDialogVisible" @close="signInDialogVisible = false">
+    <MyDialog :title="$t(`topbar.login`)" :visible="signInDialogVisible" @close="signInDialogVisible = false">
       <signInForm @success="signIn($event)"/>
     </MyDialog>
   </div>
@@ -27,21 +29,12 @@
   import signInForm from '../signInForm/signInForm.vue'
   import AV from '../../lib/leancloud'
   import Vue from 'vue'
-  import VueI18n from 'vue-i18n'
-  import i18n from '../../i18n/'
-
-  var locales = i18n
-  Vue.use(VueI18n)
-  Vue.config.lang = 'zh_CN'
-
-  Object.keys(locales).forEach(function (lang) {
-    Vue.locale(lang, locales[lang])
-  })
 
   export default{
     name: 'topBar',
     data () {
       return {
+        lang: true,
         signUpDialogVisible: false,
         signInDialogVisible: false
       }
@@ -50,6 +43,11 @@
       MyDialog,
       signUpForm,
       signInForm
+    },
+    watch: {
+      lang: function (val) {
+        Vue.config.lang = val ? 'zh_CN' : 'en'
+      }
     },
     computed: {
       user () {
@@ -68,13 +66,6 @@
       signOut () {
         AV.User.logOut()
         this.$store.commit('removeUser')
-      },
-      changeLang () {
-        if (Vue.config.lang === 'en') {
-          Vue.config.lang = 'zh_CN'
-        } else {
-          Vue.config.lang = 'en'
-        }
       }
     }
   }
@@ -94,26 +85,4 @@
       .logo
         font-size 24px
         color #000
-      .button-wrapper
-        button
-          width 72px
-          height 32px
-          line-height 32px
-          font-size 18px
-          text-align center
-          border none
-          cursor pointer
-          &:focus
-            outline none
-        .sign-up
-          margin-right 16px
-          background #02af5f
-          color #fff
-        .login
-          background blue
-          color #fff
-        .loginout
-          margin-right 16px
-          background red
-          color #fff
 </style>

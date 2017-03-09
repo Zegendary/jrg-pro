@@ -47,6 +47,7 @@
     display flex
     flex-direction column
     background #EAEBEC
+    color rgb(31,47,61)
     &>main
       flex-grow 1
       display flex
@@ -69,25 +70,4 @@
     fill currentColor
     vertical-align -0.1em
     font-size 16px
-  button
-    width 72px
-    height 32px
-    line-height 32px
-    font-size 18px
-    text-align center
-    border none
-    cursor pointer
-    &:focus
-      outline none
-    .sign-up
-      margin-right 16px
-      background #02af5f
-      color #fff
-    .login
-      background blue
-      color #fff
-    .loginout
-      margin-right 16px
-      background red
-      color #fff
 </style>

@@ -2,15 +2,15 @@
   <div>
     <form @submit.prevent="signUp">
       <div class="row">
-        <span>用户名</span>
+        <span>{{$t(`form.username`)}}</span>
         <input type="text" v-model="formData.username" required>
       </div>
       <div class="row">
-        <span>密码</span>
+        <span>{{$t(`form.password`)}}</span>
         <input type="password" v-model="formData.password" required>
       </div>
       <div class="actions">
-        <input type="submit" value="提交">
+        <input type="submit" :value="$t(`form.submit`)" class="submit">
         <span class="errorMessage">{{errorMessage}}</span>
       </div>
     </form>
@@ -47,6 +47,22 @@
     }
   }
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
-
+<style scoped lang="stylus" rel="stylesheet/stylus">
+  .row
+    display flex
+    margin-bottom 15px
+    span
+      width 60px
+      font-size 14px
+      margin-right 10px
+      text-align right
+    input
+      flex 1
+  .submit
+    color #ffffff
+    padding 5px 0
+    width 100%
+    background #20A0FF
+    border none
+    border-radius 5px
 </style>

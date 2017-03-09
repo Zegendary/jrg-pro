@@ -1,6 +1,14 @@
 export default {
   en: {
-    button: '中文(简体)',
+    button: {
+      delete: 'Delete',
+      add: 'Add New'
+    },
+    form: {
+      username: 'Account',
+      password: 'Password',
+      submit: 'Submit'
+    },
     topbar: {
       hello: 'Hello',
       resume: 'Resumer',
@@ -43,7 +51,15 @@ export default {
     }
   },
   zh_CN: {
-    button: 'English',
+    button: {
+      delete: '删除',
+      add: '新增'
+    },
+    form: {
+      username: '用户名',
+      password: '密码',
+      submit: '提交'
+    },
     topbar: {
       hello: '你好',
       resume: '简历',

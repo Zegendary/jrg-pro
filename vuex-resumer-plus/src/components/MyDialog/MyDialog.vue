@@ -2,7 +2,7 @@
   <div class="dialog-wrapper" v-show="visible">
     <div class="dialog">
       <header>{{title}}
-        <span class="close" @click="close">X</span>
+        <span class="close el-icon-close" @click="close"></span>
       </header>
       <main>
         <slot></slot>
@@ -37,10 +37,16 @@
       background #ffffff
       min-height 4em
       min-width 10em
+      box-shadow 0px 0px 5px 4px rgba(0,0,0,0.15)
       header
-        padding 16px
+        padding 15px
         display flex
+        font-size 16px
         justify-content space-between
-      .main
-        padding 16px
+        background #1D8CE0
+        color #ffffff
+        .close
+          font-size 14px
+      main
+        padding 15px
 </style>

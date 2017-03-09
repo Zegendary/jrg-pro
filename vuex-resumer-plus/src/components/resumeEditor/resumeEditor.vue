@@ -13,14 +13,14 @@
       <li v-for="item in resumeConfig" v-show="item.field === selected">
         <div v-if="item.type === 'array'">
           <h2>{{$t(`resume.${item.field}._`)}}</h2>
-          <div v-for="(subitem,i) in resume[item.field]">
-            <button class="remove" @click="removeResumeSubfield(item.field, i)">删除</button>
+          <div v-for="(subitem,i) in resume[item.field]" class="subitem">
+            <el-button class="remove" type="danger" @click="removeResumeSubfield(item.field, i)" size="mini">{{$t(`button.delete`)}}</el-button>
             <div class="resume-field" v-for="(value,key) in subitem">
               <label> {{$t(`resume.${item.field}.${key}`)}} </label>
               <input type="text" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)">
             </div>
           </div>
-          <button @click="addResumeSubfield(item.field)">新增</button>
+          <el-button class="add-new" type="success" @click="addResumeSubfield(item.field)">{{$t(`button.add`)}}</el-button>
         </div>
         <div v-else class="resume-field" v-for="(value,key) in resume[item.field]">
           <label> {{$t(`resume.profile.${key}`)}} </label>
@@ -108,14 +108,23 @@
           label
             display block
           input[type=text]
-            margin 16px 0
+            margin 12px 0
             border 1px solid #ddd
             box-shadow 0 1px 3px 0 rgba(0,0,0,.25)
             width 100%
-            height 40px
+            height 32px
             padding 0 8px
             &:focus
               outline none
+        .subitem
+          position relative
+          margin-top 20px
+          .remove
+            position absolute
+            right 0
+        .add-new
+          margin-top 10px
+          width 100%
     svg.icon
       width 24px
       height 24px
