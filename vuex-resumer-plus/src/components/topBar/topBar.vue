@@ -1,14 +1,16 @@
 <template>
   <div id="topBar">
     <div class="wrapper">
-      <span class="logo">Resumer</span>
+      <span class="logo">{{$t(`topbar.resume`)}}</span>
       <div class="button-wrapper" v-show="!userID">
-        <button class="sign-up" @click.prevent="signUpDialogVisible = true">注册</button>
-        <button class="login" @click.prevent="signInDialogVisible = true">登录</button>
+        <button class="change-lang" @click="changeLang">{{$t(`button`)}}</button>
+        <button class="sign-up" @click.prevent="signUpDialogVisible = true">{{$t(`topbar.signUp`)}}</button>
+        <button class="login" @click.prevent="signInDialogVisible = true">{{$t(`topbar.login`)}}</button>
       </div>
       <div class="button-wrapper" v-show="userID">
-        <span>你好，{{user.username}}</span>
-        <button class="loginout" @click.prevent="signOut">登出</button>
+        <span>{{$t(`topbar.hello`)}}，{{user.username}}</span>
+        <button class="change-lang" @click="changeLang">{{$t(`button`)}}</button>
+        <button class="loginout" @click.prevent="signOut">{{$t(`topbar.logout`)}}</button>
       </div>
     </div>
     <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
@@ -24,6 +26,17 @@
   import signUpForm from '../signUpForm/signUpForm.vue'
   import signInForm from '../signInForm/signInForm.vue'
   import AV from '../../lib/leancloud'
+  import Vue from 'vue'
+  import VueI18n from 'vue-i18n'
+  import i18n from '../../i18n/'
+
+  var locales = i18n
+  Vue.use(VueI18n)
+  Vue.config.lang = 'zh_CN'
+
+  Object.keys(locales).forEach(function (lang) {
+    Vue.locale(lang, locales[lang])
+  })
 
   export default{
     name: 'topBar',
@@ -55,6 +68,13 @@
       signOut () {
         AV.User.logOut()
         this.$store.commit('removeUser')
+      },
+      changeLang () {
+        if (Vue.config.lang === 'en') {
+          Vue.config.lang = 'zh_CN'
+        } else {
+          Vue.config.lang = 'en'
+        }
       }
     }
   }

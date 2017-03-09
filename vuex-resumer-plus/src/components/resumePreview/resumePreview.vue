@@ -9,7 +9,7 @@
       </p>
     </section>
     <section data-name="work" v-if="resume.work && resume.work.length > 0">
-      <h2>工作经历</h2>
+      <h2>{{$t(`resume.work._`)}}</h2>
       <ol>
         <li v-for="item in resume.work">
           <h3>{{item.company}}</h3>
@@ -18,7 +18,7 @@
       </ol>
     </section>
     <section data-name="education" v-if="resume.education && resume.education.length > 0">
-      <h2>教育经历</h2>
+      <h2>{{$t(`resume.education._`)}}</h2>
       <ol>
         <li v-for="item in resume.education">
           <h3>{{item.school}}</h3>
@@ -27,7 +27,7 @@
       </ol>
     </section>
     <section data-name="projects" v-if="resume.projects && resume.projects.length > 0">
-      <h2>项目经历</h2>
+      <h2>{{$t(`resume.projects._`)}}</h2>
       <ol>
         <li v-for="item in resume.projects">
           <h3>{{item.name}}</h3>
@@ -36,7 +36,7 @@
       </ol>
     </section>
     <section data-name="awards" v-if="resume.awards && resume.awards.length > 0">
-    <h2>获得荣誉</h2>
+    <h2>{{$t(`resume.awards._`)}}</h2>
     <ol>
       <li v-for="item in resume.awards">
         <h3>{{item.name}}</h3>
@@ -45,7 +45,7 @@
     </ol>
   </section>
     <section data-name="contacts" v-if="resume.contacts && resume.contacts.length > 0">
-    <h2>联系方式</h2>
+    <h2>{{$t(`resume.contacts._`)}}</h2>
     <ol>
       <li v-for="item in resume.contacts">
         <h3>{{item.contact}}</h3>

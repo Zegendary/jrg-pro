@@ -1,15 +1,56 @@
 export default {
   en: {
+    button: '中文(简体)',
+    topbar: {
+      hello: 'Hello',
+      resume: 'Resumer',
+      login: 'Login',
+      signUp: 'Sign Up',
+      logout: 'Logout'
+    },
     resume: {
       profile: {
         name: 'Name',
         city: 'City',
         title: 'Title',
         birthday: 'Birthday'
+      },
+      work: {
+        _: 'Work Historys',
+        company: 'Company',
+        details: 'Details'
+      },
+      education: {
+        _: 'Educations',
+        school: 'School',
+        details: 'Detail'
+      },
+      projects: {
+        _: 'Projects',
+        name: 'Project Name',
+        details: 'Details'
+      },
+      awards: {
+        _: 'Awards',
+        name: 'Name',
+        details: 'Details'
+      },
+      contacts: {
+        _: 'Contacts',
+        contact: 'Connection',
+        content: 'Content'
       }
     }
   },
   zh_CN: {
+    button: 'English',
+    topbar: {
+      hello: '你好',
+      resume: '简历',
+      login: '登录',
+      signUp: '注册',
+      logout: '登出'
+    },
     resume: {
       profile: {
         name: '姓名',
